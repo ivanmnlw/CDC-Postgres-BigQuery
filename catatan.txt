@@ -1,0 +1,10 @@
+curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" 127.0.0.1:8083/connectors/ --data "@configs/debezium.json"
+
+CREATE TABLE students (id integer primary key, name varchar);
+
+ALTER TABLE public.students REPLICA IDENTITY FULL;
+
+INSERT INTO public.students (id, name)
+VALUES (2, 'asdfalasdf);
+
+kafka-console-consumer --bootstrap-server kafka1:9092 --topic postgres.public.students --from-beginning
